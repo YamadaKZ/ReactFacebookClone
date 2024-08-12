@@ -13,7 +13,9 @@ const Login = () => {
                         around you on Facebook.
                     </h2>
                 </div>
-                <LoginInput />
+                <div className="LoginInput">
+                    <LoginInput />
+                </div>
             </div>
         </div>
     );
