@@ -1,0 +1,71 @@
+.loginFrame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:1em;
+    width: 300px;
+    background-color: white;
+    border: solid 3px #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.22);
+    
+    
+
+    .EmailLogin {
+        display: flex;
+        align-items: center;
+        background-color: white;
+        border-radius: 20px;
+        margin: 6px;
+        //width: 100%;
+    }
+
+    .Password {
+        display: flex;
+        align-items: center;
+        background-color: white;
+        border-radius: 20px;
+        margin: 6px;
+        //width: 100%;
+    }
+
+    button {
+        margin: 6px;
+        //width: 180px;
+
+        &.loginButton {
+            background-color: #1a77f2; 
+            color: white; 
+            font-weight: 800;
+            width: 100%;
+
+            &:hover {
+                background-color: #70a9f3;
+                color: black;
+
+            }
+        }
+
+        &.forgetLink {
+            width: 100%;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ccc; 
+            text-align: center; 
+            font-weight: 500;
+        }
+
+        &.Account {
+            background-color: #35b416; 
+            color: white; 
+            font-weight: 800;
+            &:hover {
+                background-color: #8de478; 
+                color: black;
+            }
+        }
+    }
+
+
+}
