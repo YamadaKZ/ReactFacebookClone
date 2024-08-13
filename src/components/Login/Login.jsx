@@ -1,7 +1,10 @@
+import { useState, useEffect } from "react";
 import "./Login.scss";
 import LoginInput from "./LoginInput";
 
 const Login = () => {
+
+
     return (
         <div className="login-container">
             <div className="login-content">
@@ -15,8 +18,13 @@ const Login = () => {
                 </div>
                 <div className="LoginInput">
                     <LoginInput />
+                    {/* <form className="Password">
+                        <input type="email" required></input>
+                        <input type="password" required></input>
+                        <button type="submit">test submit</button>
+                    </form> */}
                 </div>
-            </div>
+            </div> 
         </div>
     );
 }

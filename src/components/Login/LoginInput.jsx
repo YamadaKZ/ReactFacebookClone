@@ -37,6 +37,8 @@ const LoginInput = () => {
         <div className="loginFrame">
 
             <form className="EmailLogin" onSubmit={signIn}>
+
+                <div></div>
                 <TextField
                 type="text"
                 placeholder="Email or phone number"
