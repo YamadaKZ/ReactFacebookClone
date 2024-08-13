@@ -18,15 +18,17 @@ const Login = () => {
                 </div>
                 <div className="LoginInput">
                     <LoginInput />
-                    {/* <form className="Password">
-                        <input type="email" required></input>
-                        <input type="password" required></input>
-                        <button type="submit">test submit</button>
-                    </form> */}
                 </div>
             </div> 
         </div>
     );
 }
+
+                    {/* <form className="Password">
+                        <input type="email" required></input>
+                        <input type="password" required></input>
+                        <button type="submit">test submit</button>
+                    </form> */}
+                    
 
 export default Login;

@@ -1,27 +1,64 @@
 import "./LoginInput.scss"
 import { Button, TextField } from "@mui/material"
 import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
+
 
 const LoginInput = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [emailError, setEmailError] = useState("")
+    const [passwordError, setPasswordError] = useState("")
+
+    const navigate = useNavigate();
+
+
 
     const validateEmail = () => {
         const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        return re.test(String(email).toLowerCase)
+        return re.test(String(email).toLowerCase())
     };
+
+
+    // const signIn = (e) => {
+    //     e.preventDefault();
+    //     if(!validateEmail(email)) {
+    //         setEmailError("Invalid email address.")
+    //     } else {
+    //         setEmailError("")
+    //     }
+    // }
 
 
     const signIn = (e) => {
         e.preventDefault();
+        let isValid = true;
+
         if(!validateEmail(email)) {
-            setEmailError("Invalid email address.")
+            setEmailError("Invalid email address")
+            isValid = false;
         } else {
             setEmailError("")
         }
-    }
+
+        if(password.length < 8) {
+            setPasswordError("Password is different. ")
+            isValid = false;
+        } else {
+            setPasswordError("")
+        }
+
+        if(isValid) {
+            if(email === "yamada@rikkeisoft.com" && password === "12345678") {
+                navigate("/chat");
+            } else {
+                setEmailError("Invalid email or password.")
+                setPasswordError("Invalid email or password.")
+            }
+        }
+    };
+
 
     const createAccount = () => {
         console.log("create new Account")
@@ -35,10 +72,7 @@ const LoginInput = () => {
 
     return (
         <div className="loginFrame">
-
             <form className="EmailLogin" onSubmit={signIn}>
-
-                <div></div>
                 <TextField
                 type="text"
                 placeholder="Email or phone number"
@@ -46,9 +80,10 @@ const LoginInput = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 error={!!emailError}
                 helperText= {emailError}
-                fullWidth/>
-                {/* < input type="text" placeholder="Email or phone number"/> */}
+                fullWidth
+                />
             </form>
+                {/* < input type="text" placeholder="Email or phone number"/> */}
 
             <form className="Password">
                 <TextField 
@@ -56,7 +91,10 @@ const LoginInput = () => {
                 placeholder="password"
                 value={password}
                 onChange={(e) =>setPassword(e.target.value)}
-                fullWidth/>
+                error={!!passwordError}
+                helperText= {passwordError}
+                fullWidth
+                />
                 {/* < input type="text" placeholder="Password" required/> */}
             </form>
             
@@ -67,12 +105,16 @@ const LoginInput = () => {
     );
 
 
+};
+
+
+export default LoginInput
+
+
+
+
+
     // <form action="#">
     //         <input placeholder="Email or phone number" required />
     //         <button type="submit"className="login">
     // </form>
-
-}
-
-
-export default LoginInput
