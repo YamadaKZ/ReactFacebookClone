@@ -1,6 +1,6 @@
 import "./LoginInput.scss"
 import { Button, TextField } from "@mui/material"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
 
@@ -20,6 +20,17 @@ const LoginInput = () => {
         return re.test(String(email).toLowerCase())
     };
 
+    useEffect(() => {
+        if(email ==="") {
+            setEmailError("")
+        }
+    },[email])
+
+    useEffect(() => {
+        if(password ==="") {
+            setPasswordError("")
+        }
+    },[password])
 
     // const signIn = (e) => {
     //     e.preventDefault();
