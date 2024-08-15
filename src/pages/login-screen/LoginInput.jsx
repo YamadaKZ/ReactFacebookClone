@@ -21,6 +21,12 @@ const LoginInput = () => {
         return re.test(String(value).toLowerCase())
     };
 
+    // const validateEmail = (value) => {
+    //     if (value === "") return true; // 空の入力を許可
+    //     const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    //     return re.test(String(value).toLowerCase())
+    // };
+
 
     // useEffect(() => {
     //     if(email ==="") {
@@ -73,12 +79,19 @@ const LoginInput = () => {
     // };
 
 
-   
-
     function handleSignIn() {
         
         console.log('handleSignIn', userInfo);
 
+        // emailError
+        if (userInfo.email != validateEmail ) {
+            setUserInfo(prev=> ({...prev, emailError: "email is different. "}))
+        }else{
+            setUserInfo(prev=> ({...prev, emailError: ""}))
+        }
+
+    
+        // passwordError
         if (userInfo.password.length < 8) {
             setUserInfo(prev=> ({...prev, passwordError: "Password is different. "}))
         }else{
@@ -91,28 +104,49 @@ const LoginInput = () => {
 
             localStorage.setItem('token', USER_INFO_DUM.token)
             navigate(`/${PATH_URL.chatPage}`);
-           
+
         } else {
             alert('Invalid email or password.')
             return
         }
     }
 
-    function onChange(event) {
+    // function onChange(event) {
 
+    //     const value = event.target.value
+    //     const type = event.target.name
+
+    //     console.log('onChange', {type:type, value: value });
+
+    //     if(type === 'emailLogin'){
+    //         setUserInfo(prev=> ({...prev, email: value}))
+    //     }
+
+    //     if(type === 'passwordLogin'){
+    //         setUserInfo(prev=> ({...prev, password: value}))
+    //     }
+        
+    // }
+
+    function onChange(event) {
         const value = event.target.value
         const type = event.target.name
-
-        console.log('onChange', {type:type, value: value });
-
-        if(type === 'emailLogin'){
-            setUserInfo(prev=> ({...prev, email: value}))
+    
+        console.log('onChange', {type: type, value: value});
+    
+        if (type === 'emailLogin') {
+            setUserInfo(prev => ({
+                ...prev, 
+                email: value,
+                emailError: value === "" ? "" : prev.emailError // エラーメッセージをクリア
+            }))
+        } else if (type === 'passwordLogin') {
+            setUserInfo(prev => ({
+                ...prev, 
+                password: value,
+                passwordError: value === "" ? "" : prev.passwordError // エラーメッセージをクリア
+            }))
         }
-
-        if(type === 'passwordLogin'){
-            setUserInfo(prev=> ({...prev, password: value}))
-        }
-        
     }
 
     const createAccount = () => {
@@ -139,7 +173,7 @@ const LoginInput = () => {
                         fullWidth
                     />
                 </div>
-               
+            
                 <div className="Password">
                     <TextField 
                         type="password"
