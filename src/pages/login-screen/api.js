@@ -2,7 +2,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 const api = axios.create({
-  baseURL: 'http://http://localhost:5173/signin', // API URL
+  baseURL: 'http://localhost:5173/  ', // API URL
 });
 
 const mock = new MockAdapter(api, { onNoMatch: "passthrough" });

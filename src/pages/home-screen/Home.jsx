@@ -1,5 +1,6 @@
 import React from "react";
 import MainLayout from "../MainLayout";
+import "./Home.scss"
 
 const Home = () => {
 
@@ -7,8 +8,8 @@ const Home = () => {
   
   return (
     <MainLayout>
-      <div>
-        <p>Home Screen</p>
+      <div className="home">
+        <p>Under renovation</p>
         <p>Please Logout the page</p>
       </div>
     </MainLayout>)
