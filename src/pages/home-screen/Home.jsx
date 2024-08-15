@@ -9,6 +9,7 @@ const Home = () => {
     <MainLayout>
       <div>
         <p>Home Screen</p>
+        <p>Please Logout the page</p>
       </div>
     </MainLayout>)
 }
