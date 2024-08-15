@@ -21,63 +21,6 @@ const LoginInput = () => {
         return re.test(String(value).toLowerCase())
     };
 
-    // const validateEmail = (value) => {
-    //     if (value === "") return true; // 空の入力を許可
-    //     const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    //     return re.test(String(value).toLowerCase())
-    // };
-
-
-    // useEffect(() => {
-    //     if(email ==="") {
-    //         setEmailError("")
-    //     }
-    // },[email])
-
-    // useEffect(() => {
-    //     if(password ==="") {
-    //         setPasswordError("")
-    //     }
-    // },[password])
-
-    // const signIn = (e) => {
-    //     e.preventDefault();
-    //     if(!validateEmail(email)) {
-    //         setEmailError("Invalid email address.")
-    //     } else {
-    //         setEmailError("")
-    //     }
-    // }
-
-
-    // const signIn = (e) => {
-    //     e.preventDefault();
-    //     let isValid = true;
-
-    //     if(!validateEmail(email)) {
-    //         setEmailError("Invalid email address")
-    //         isValid = false;
-    //     } else {
-    //         setEmailError("")
-    //     }
-
-    //     if(password.length < 8) {
-    //         setPasswordError("Password is different. ")
-    //         isValid = false;
-    //     } else {
-    //         setPasswordError("")
-    //     }
-
-    //     if(isValid) {
-    //         if(email === USER_INFO_DUM.email && password === USER_INFO_DUM.Password) {
-    //             navigate("/chat");
-    //         } else {
-    //             setEmailError("Invalid email or password.")
-    //             setPasswordError("Invalid email or password.")
-    //         }
-    //     }
-    // };
-
 
     function handleSignIn() {
         
@@ -110,23 +53,6 @@ const LoginInput = () => {
             return
         }
     }
-
-    // function onChange(event) {
-
-    //     const value = event.target.value
-    //     const type = event.target.name
-
-    //     console.log('onChange', {type:type, value: value });
-
-    //     if(type === 'emailLogin'){
-    //         setUserInfo(prev=> ({...prev, email: value}))
-    //     }
-
-    //     if(type === 'passwordLogin'){
-    //         setUserInfo(prev=> ({...prev, password: value}))
-    //     }
-        
-    // }
 
     function onChange(event) {
         const value = event.target.value
@@ -196,8 +122,6 @@ const LoginInput = () => {
 
 
 };
-
-
 export default LoginInput
 
 
@@ -208,3 +132,82 @@ export default LoginInput
     //         <input placeholder="Email or phone number" required />
     //         <button type="submit"className="login">
     // </form>
+
+
+
+
+
+      // const validateEmail = (value) => {
+    //     if (value === "") return true; // 空の入力を許可
+    //     const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    //     return re.test(String(value).toLowerCase())
+    // };
+
+
+    // useEffect(() => {
+    //     if(email ==="") {
+    //         setEmailError("")
+    //     }
+    // },[email])
+
+    // useEffect(() => {
+    //     if(password ==="") {
+    //         setPasswordError("")
+    //     }
+    // },[password])
+
+    // const signIn = (e) => {
+    //     e.preventDefault();
+    //     if(!validateEmail(email)) {
+    //         setEmailError("Invalid email address.")
+    //     } else {
+    //         setEmailError("")
+    //     }
+    // }
+
+
+    // const signIn = (e) => {
+    //     e.preventDefault();
+    //     let isValid = true;
+
+    //     if(!validateEmail(email)) {
+    //         setEmailError("Invalid email address")
+    //         isValid = false;
+    //     } else {
+    //         setEmailError("")
+    //     }
+
+    //     if(password.length < 8) {
+    //         setPasswordError("Password is different. ")
+    //         isValid = false;
+    //     } else {
+    //         setPasswordError("")
+    //     }
+
+    //     if(isValid) {
+    //         if(email === USER_INFO_DUM.email && password === USER_INFO_DUM.Password) {
+    //             navigate("/chat");
+    //         } else {
+    //             setEmailError("Invalid email or password.")
+    //             setPasswordError("Invalid email or password.")
+    //         }
+    //     }
+    // };
+
+
+        // function onChange(event) {
+
+    //     const value = event.target.value
+    //     const type = event.target.name
+
+    //     console.log('onChange', {type:type, value: value });
+
+    //     if(type === 'emailLogin'){
+    //         setUserInfo(prev=> ({...prev, email: value}))
+    //     }
+
+    //     if(type === 'passwordLogin'){
+    //         setUserInfo(prev=> ({...prev, password: value}))
+    //     }
+        
+    // }
