@@ -1,20 +1,10 @@
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
+import MockAdapter from "axios-mock-adapter";
+import api from "./api";
+import { USER_INFO_DUM } from "../utils/constant";
 
-const api = axios.create({
-  baseURL: 'http://localhost:5173/  ', // API URL
-});
 
-const mock = new MockAdapter(api, { onNoMatch: "passthrough" });
+const mock = new MockAdapter(api, {onNoMatch: "passthrough"});
 
-// 
-const USER_INFO_DUM = {
-    email: "yamada@rikkeisoft.com",
-    Password: '12345678',
-    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9...'
-};
-
-// ログインAPIのモック
 mock.onPost('/login').reply((config) => {
     const { email, password } = JSON.parse(config.data);
     if (email === USER_INFO_DUM.email && password === USER_INFO_DUM.Password) {
@@ -23,7 +13,7 @@ mock.onPost('/login').reply((config) => {
     return [400, { message: 'Invalid email or password' }];
 });
 
-// ログイン関数
+
 export const login = async (email, password) => {
     try {
     const response = await api.post('/login', { email, password });
@@ -32,3 +22,4 @@ export const login = async (email, password) => {
     throw error.response.data;
 }
 };
+

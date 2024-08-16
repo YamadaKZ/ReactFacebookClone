@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { PATH_URL, USER_INFO_DUM, userInfoDefault } from "../../utils/constant";
 
-import { login } from './api';
+import { login } from "../../API/onPost";
 
 
 const LoginInput = () => {
