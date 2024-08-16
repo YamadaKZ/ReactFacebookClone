@@ -18,3 +18,34 @@ export const userInfoDefault = {
     passwordError:''
 }
 
+
+//user infomation
+export const USER_INFO_1 = {
+    icon: "Robot.png",
+    username: "yamada",
+    userText: "We supply a series of design principles, practical patterns and high quality design resources.",
+    favorite: "156",
+    good: "156",
+    comment:"10",
+    picture:"poster.png"
+}
+
+export const USER_INFO_2 = {
+    icon: "facebook.png",
+    username: "Oficial Facebook",
+    userText: "We supply a series of design principles, practical patterns and high quality design resources.",
+    favorite: "116",
+    good: "126",
+    comment:"12",
+    picture:"poster.png"
+}
+
+export const USER_INFO_3 = {
+    icon: "PirateFlag.png",
+    username: "shanks",
+    userText: "We supply a series of design principles, practical patterns and high quality design resources.",
+    favorite: "212",
+    good: "216",
+    comment:"56",
+    picture:"poster.png"
+}
