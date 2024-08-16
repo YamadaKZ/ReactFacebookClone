@@ -2,7 +2,9 @@ import "./LoginInput.scss"
 import { Button, TextField } from "@mui/material"
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { PATH_URL, USER_INFO_DUM, userInfoDefault } from "../../utils/constant";
+import { PATH_URL, userInfoDefault } from "../../utils/constant";
+
+import { login } from './api';
 
 
 const LoginInput = () => {
@@ -78,38 +80,56 @@ const LoginInput = () => {
     //     }
     // };
 
-
-    function handleSignIn() {
+    async function handleSignIn(e) {
+        e.preventDefault();
         
-        console.log('handleSignIn', userInfo);
-
-        // emailError
-        if (userInfo.email != validateEmail ) {
-            setUserInfo(prev=> ({...prev, emailError: "email is different. "}))
-        }else{
-            setUserInfo(prev=> ({...prev, emailError: ""}))
-        }
-
+        let isValid = true;
     
-        // passwordError
-        if (userInfo.password.length < 8) {
-            setUserInfo(prev=> ({...prev, passwordError: "Password is different. "}))
-        }else{
-            setUserInfo(prev=> ({...prev, passwordError: ""}))
-        }
-
-        if(userInfo.email === USER_INFO_DUM.email 
-            && userInfo.password === USER_INFO_DUM.Password
-        ) {
-
-            localStorage.setItem('token', USER_INFO_DUM.token)
-            navigate(`/${PATH_URL.chatPage}`);
-
-        } else {
-            alert('Invalid email or password.')
-            return
+        if (isValid) {
+            try {
+                const response = await login(userInfo.email, userInfo.password);
+                localStorage.setItem('token', response.token);
+                navigate(`/${PATH_URL.chatPage}`);
+            } catch (error) {
+                alert(error.message || 'Login failed');
+            }
         }
     }
+
+
+    // function handleSignIn() {
+        
+    //     console.log('handleSignIn', userInfo);
+
+    //     // emailError
+    //     if (userInfo.email != validateEmail ) {
+    //         setUserInfo(prev=> ({...prev, emailError: "email is different. "}))
+    //     }else{
+    //         setUserInfo(prev=> ({...prev, emailError: ""}))
+    //     }
+
+    
+    //     // passwordError
+    //     if (userInfo.password.length < 8) {
+    //         setUserInfo(prev=> ({...prev, passwordError: "Password is different. "}))
+    //     }else{
+    //         setUserInfo(prev=> ({...prev, passwordError: ""}))
+    //     }
+
+    //     if(userInfo.email === USER_INFO_DUM.email 
+    //         && userInfo.password === USER_INFO_DUM.Password
+    //     ) {
+
+    //         localStorage.setItem('token', USER_INFO_DUM.token)
+    //         navigate(`/${PATH_URL.chatPage}`);
+
+    //     } else {
+    //         alert('Invalid email or password.')
+    //         return
+    //     }
+    // }
+
+
 
     // function onChange(event) {
 
@@ -128,25 +148,35 @@ const LoginInput = () => {
         
     // }
 
+    // function onChange(event) {
+    //     const value = event.target.value
+    //     const type = event.target.name
+    
+    //     console.log('onChange', {type: type, value: value});
+    
+    //     if (type === 'emailLogin') {
+    //         setUserInfo(prev => ({
+    //             ...prev, 
+    //             email: value,
+    //             emailError: value === "" ? "" : prev.emailError // エラーメッセージをクリア
+    //         }))
+    //     } else if (type === 'passwordLogin') {
+    //         setUserInfo(prev => ({
+    //             ...prev, 
+    //             password: value,
+    //             passwordError: value === "" ? "" : prev.passwordError // エラーメッセージをクリア
+    //         }))
+    //     }
+    // }
+
     function onChange(event) {
-        const value = event.target.value
-        const type = event.target.name
+        const { name, value } = event.target;
     
-        console.log('onChange', {type: type, value: value});
-    
-        if (type === 'emailLogin') {
-            setUserInfo(prev => ({
-                ...prev, 
-                email: value,
-                emailError: value === "" ? "" : prev.emailError // エラーメッセージをクリア
-            }))
-        } else if (type === 'passwordLogin') {
-            setUserInfo(prev => ({
-                ...prev, 
-                password: value,
-                passwordError: value === "" ? "" : prev.passwordError // エラーメッセージをクリア
-            }))
-        }
+        setUserInfo(prev => ({
+            ...prev, 
+            [name]: value,
+            [`${name}Error`]: "" 
+        }));
     }
 
     const createAccount = () => {
@@ -169,7 +199,8 @@ const LoginInput = () => {
                         onChange={onChange}
                         error={userInfo.emailError}
                         helperText= {userInfo.emailError}
-                        name={'emailLogin'}
+                        // name={'emailLogin'}
+                        name="email"
                         fullWidth
                     />
                 </div>
@@ -178,7 +209,8 @@ const LoginInput = () => {
                     <TextField 
                         type="password"
                         placeholder="password"
-                        name={'passwordLogin'}
+                        // name={'passwordLogin'}
+                        name="password"
                         value={userInfo.password}
                         onChange={onChange}
                         error={userInfo.passwordError}
@@ -188,7 +220,8 @@ const LoginInput = () => {
                 </div>
             </form>
 
-            <Button className="loginButton" onClick = {handleSignIn}> Login </Button>
+            {/* <Button className="loginButton" onClick = {handleSignIn}> Login </Button> */}
+            <Button type="submit" onClick={handleSignIn} className="loginButton">Login</Button>
             <Button className="forgetLink" onClick={forgetLink}>Forget Password</Button>
             <Button className="Account" onClick = {createAccount}> Create new account </Button> 
         </div>
