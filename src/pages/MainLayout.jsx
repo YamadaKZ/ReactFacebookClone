@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../components/header";
+import Footer from "../components/footer";
 
 const MainLayout = ({ children }) => {
 
@@ -9,6 +10,9 @@ const MainLayout = ({ children }) => {
         <Header/>
       </div>
       <div>{children}</div>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };
