@@ -2,7 +2,8 @@ import "./LoginInput.scss"
 import { Button, TextField } from "@mui/material"
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { PATH_URL, USER_INFO_DUM, userInfoDefault } from "../../utils/constant";
+import { PATH_URL, userInfoDefault } from "../../utils/constant";
+import { login } from "./api";
 
 
 const LoginInput = () => {
@@ -114,6 +115,7 @@ const LoginInput = () => {
         console.log("reset the Password")
     }
 
+
     return (
         <div className="loginFrame">
             <form className="inputContainer" onSubmit={handleSignIn}>
@@ -143,7 +145,7 @@ const LoginInput = () => {
                         value={userInfo.password}
                         onChange={onChange}
                         error={userInfo.passwordError}
-                        helperText= {userInfo.passwordError}
+                        helperText= {userInfo.passworAdError}
                         fullWidth
                     />
 
