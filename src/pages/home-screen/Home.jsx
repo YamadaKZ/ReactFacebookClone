@@ -1,22 +1,29 @@
 import React from "react";
 import MainLayout from "../MainLayout";
 import "./Home.scss"
-import { useState } from "react";
 import { Button } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { countNumber, SubNumber, ResetNumber } from "../../slices/countSlice";
 
 const Home = () => {
-    const [point, setPoint] = useState(0);
 
-    const countNumber = () => {
-        setPoint((state) => state + 1);
+    const dispatch = useDispatch();
+    //const [point, setPoint] = useState(0);
+    const point = useSelector((state) => state.counter.counter)
+
+    const countNum = () => {
+        //setPoint((state) => state + 1);
+        dispatch(countNumber());
 }
 
-    const SubNumber = () => {
-        setPoint((state) => state - 1);
+    const SubNum = () => {
+        //setPoint((state) => state - 1);
+        dispatch(SubNumber());
 }
 
-    const ResetNumber = () => {
-      setPoint((state) => state * 0);
+    const ResetNum = () => {
+      //setPoint((state) => state * 0);
+        dispatch(ResetNumber());
     }
 
   //home screen
@@ -28,9 +35,9 @@ const Home = () => {
                 <div className="counter">
                     <h2>{point}</h2>
                     <div className="buttons">
-                        <Button onClick={countNumber}>count +1</Button>
-                        <Button onClick={SubNumber}>count -1</Button>
-                        <Button onClick={ResetNumber}>Reset</Button>
+                        <Button onClick={countNum}>count +1</Button>
+                        <Button onClick={SubNum}>count -1</Button>
+                        <Button onClick={ResetNum}>Reset</Button>
                     </div>
                 </div>
             </div>
