@@ -2,8 +2,9 @@ import "./LoginInput.scss"
 import { Button, TextField } from "@mui/material"
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { PATH_URL, userInfoDefault } from "../../utils/constant";
-import { login } from "./api";
+import { PATH_URL,userInfoDefault } from "../../utils/constant";
+
+import { login } from "../../API/onPost";
 
 
 const LoginInput = () => {

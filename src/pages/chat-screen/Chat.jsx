@@ -1,40 +1,90 @@
-import "./Chat.scss"
-import { useState } from "react";
-import { Button } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import "./Chat.scss";
 import MainLayout from "../MainLayout";
+import Comment from "./ChatComment";
+import api from "../../API/api";
+import mock from "../../API/display";
 
 const Chat = () => {
-    const [point, setPoint] = useState(0);
+    const [users, setUsers] = useState([]);
 
-    const countNumber = () => {
-        setPoint((state) => state + 1);
-    }
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await api.get('/users');
+                setUsers(response.data);
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        };
 
-    const SubNumber = () => {
-        setPoint((state) => state - 1);
-    }
-
-    const ResetNumber = () => {
-        setPoint((state) => state * 0);
-    }
-
+        fetchUsers();
+    }, []);
 
     return (
         <MainLayout>
-            <div className="pointer">
+            <div className="chat">
                 <h1>Facebook</h1>
-                <div className="counter">
-                    <h2>{point}</h2>
-                    <div className="buttons">
-                        <Button onClick={countNumber}>count +1</Button>
-                        <Button onClick={SubNumber}>count -1</Button>
-                        <Button onClick={ResetNumber}>Reset</Button>
+                <div className="container">
+                    <div className="display">
+                        {users.map((user, index) => (
+                            <Comment key={index} userInfo={user} />
+                        ))}
                     </div>
                 </div>
             </div>
         </MainLayout>
     );
-}
+};
+
+export default Chat;
 
 
-export default Chat
+// import React from "react";
+// import "./Chat.scss";
+// import MainLayout from "../MainLayout";
+// import Comment from "./ChatComment";
+
+// const Chat = () => {
+//     return (
+//         <MainLayout>
+//             <div className="chat">
+//                 <h1>Facebook</h1>
+//                 <div className="chat-container">
+//                     <div className="display">
+//                         <Comment  />                
+//                         <Comment />                
+//                         <Comment />                
+//                     </div>
+//                 </div>
+//             </div>
+//         </MainLayout>
+//     );
+// }
+
+// export default Chat;
+
+
+// import "./Chat.scss"
+// import MainLayout from "../MainLayout";
+// import Comment from "./ChatComment";
+
+// const Chat = () => {
+
+
+//     return (
+//         <MainLayout>
+//             <div className="chat">
+//                 <h1>Facebook</h1>
+//                 <div className="display">
+//                     <Comment />                
+//                     <Comment />                
+//                 </div>
+
+//             </div>
+//         </MainLayout>
+//     );
+// }
+
+
+// export default Chat
