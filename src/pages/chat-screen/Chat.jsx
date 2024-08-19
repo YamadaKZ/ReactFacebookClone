@@ -1,25 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect } from "react";
 import "./Chat.scss";
 import MainLayout from "../MainLayout";
 import Comment from "./ChatComment";
-import api from "../../API/api";
-import mock from "../../API/display";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUsers } from "../../slices/usersSlice";
+
 
 const Chat = () => {
-    const [users, setUsers] = useState([]);
+    const dispatch = useDispatch();
+
+    const users = useSelector((state) => state.users.users);
+    const loading = useSelector((state) => state.users.loading);
+    const error = useSelector((state) => state.users.error);
 
     useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                const response = await api.get('/users');
-                setUsers(response.data);
-            } catch (error) {
-                console.error("Error fetching user data:", error);
-            }
-        };
+        dispatch(fetchUsers())
+    }, [dispatch]);
 
-        fetchUsers();
-    }, []);
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
         <MainLayout>
@@ -38,53 +42,3 @@ const Chat = () => {
 };
 
 export default Chat;
-
-
-// import React from "react";
-// import "./Chat.scss";
-// import MainLayout from "../MainLayout";
-// import Comment from "./ChatComment";
-
-// const Chat = () => {
-//     return (
-//         <MainLayout>
-//             <div className="chat">
-//                 <h1>Facebook</h1>
-//                 <div className="chat-container">
-//                     <div className="display">
-//                         <Comment  />                
-//                         <Comment />                
-//                         <Comment />                
-//                     </div>
-//                 </div>
-//             </div>
-//         </MainLayout>
-//     );
-// }
-
-// export default Chat;
-
-
-// import "./Chat.scss"
-// import MainLayout from "../MainLayout";
-// import Comment from "./ChatComment";
-
-// const Chat = () => {
-
-
-//     return (
-//         <MainLayout>
-//             <div className="chat">
-//                 <h1>Facebook</h1>
-//                 <div className="display">
-//                     <Comment />                
-//                     <Comment />                
-//                 </div>
-
-//             </div>
-//         </MainLayout>
-//     );
-// }
-
-
-// export default Chat

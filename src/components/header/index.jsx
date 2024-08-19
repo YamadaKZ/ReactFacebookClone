@@ -23,7 +23,7 @@ const Header = () => {
     <div className="logo">
       <img src="facebook.png" alt="Facebook Logo" onClick={homeIn} />
     </div>
-    <h1 className="title">facebook</h1>
+    <h1 className="title" onClick={homeIn} >facebook</h1>
     <button className="logout-button" onClick={handleLogout}>Logout</button>
   </div>
   );
