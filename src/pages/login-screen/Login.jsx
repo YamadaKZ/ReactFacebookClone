@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import "./Login.scss";
 import LoginInput from "./LoginInput";
 
@@ -23,11 +22,11 @@ const Login = () => {
     );
 }
 
+export default Login;
+
+
                     {/* <form className="Password">
                         <input type="email" required></input>
                         <input type="password" required></input>
                         <button type="submit">test submit</button>
                     </form> */}
-                    
-
-export default Login;

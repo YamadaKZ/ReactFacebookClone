@@ -1,9 +1,8 @@
-.pointer {
+.chat {
     background-color: #f0f2f5;
     min-height: 100vh;
+    display: flex;
     flex-direction: column;
-    //display: flex;
-    justify-content: center;
     align-items: center;
 
     h1 {    
@@ -14,32 +13,47 @@
         text-align: center;
     }
 
-    .counter {
-        margin: 20px;
+    .chat-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .display {
         display: flex;
-        justify-content: center;
-        align-items: center;
         flex-direction: column;
-
-        h2 {
-            padding: 20px;
-            border: solid 3px #ffffff;
-            box-shadow: 0 3px 5px rgba(0,0,0,0.22);
-            background-color: white;
-        }
-
-        .buttons {
-            margin: 20px;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            gap: 10px; /* ボタン間の間隔 */
-        }
-
-        button {
-            padding: 10px;
-            background-color: #1a77f2;
-            color: white;
-        }
+        align-items: center;
+        gap: 20px;
     }
 }
+
+@media (max-width: 768px) {
+    .chat {
+        .chat-container {
+        padding: 10px;
+    }
+    }
+}
+
+// .chat {
+//     background-color: #f0f2f5;
+//     min-height: 100vh;
+//     flex-direction: column;
+//     //display: flex;
+//     justify-content: center;
+//     align-items: center;
+
+//     h1 {    
+//         padding: 20px;
+//         background-color: #1a77f2; 
+//         color: white; 
+//         width: 100%;
+//         text-align: center;
+//     }
+//     .display {
+//         align-items: center;
+//         justify-content: center;
+//     }
+
+// }

@@ -1,40 +1,44 @@
-import "./Chat.scss"
-import { useState } from "react";
-import { Button } from "@mui/material";
+import React, {useEffect } from "react";
+import "./Chat.scss";
 import MainLayout from "../MainLayout";
+import Comment from "./ChatComment";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUsers } from "../../slices/usersSlice";
+
 
 const Chat = () => {
-    const [point, setPoint] = useState(0);
+    const dispatch = useDispatch();
 
-    const countNumber = () => {
-        setPoint((state) => state + 1);
+    const users = useSelector((state) => state.users.users);
+    const loading = useSelector((state) => state.users.loading);
+    const error = useSelector((state) => state.users.error);
+
+    useEffect(() => {
+        dispatch(fetchUsers())
+    }, [dispatch]);
+
+    if (loading) {
+        return <div>Loading...</div>;
     }
 
-    const SubNumber = () => {
-        setPoint((state) => state - 1);
+    if (error) {
+        return <div>Error: {error}</div>;
     }
-
-    const ResetNumber = () => {
-        setPoint((state) => state * 0);
-    }
-
 
     return (
         <MainLayout>
-            <div className="pointer">
+            <div className="chat">
                 <h1>Facebook</h1>
-                <div className="counter">
-                    <h2>{point}</h2>
-                    <div className="buttons">
-                        <Button onClick={countNumber}>count +1</Button>
-                        <Button onClick={SubNumber}>count -1</Button>
-                        <Button onClick={ResetNumber}>Reset</Button>
+                <div className="container">
+                    <div className="display">
+                        {users.map((user, index) => (
+                            <Comment key={index} userInfo={user} />
+                        ))}
                     </div>
                 </div>
             </div>
         </MainLayout>
     );
-}
+};
 
-
-export default Chat
+export default Chat;
