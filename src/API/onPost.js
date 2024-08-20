@@ -10,7 +10,7 @@ const mock = new MockAdapter(api, { onNoMatch: "passthrough" });
 
 // 
 const USER_INFO_DUM = {
-    email: "yamada@rikkeisoft.com",
+    email: "yamada@google.com",
     Password: '12345678',
     token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9...'
 };

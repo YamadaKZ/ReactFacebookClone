@@ -12,6 +12,10 @@ const Login = () => {
                         Connect with friends and the world
                         <br />
                         around you on Facebook.
+                        <br/>
+                        fake email: "yamada@google.com",
+                        <br/>
+                        fake Password: '12345678',
                     </h2>
                 </div>
                 <div className="LoginInput">
