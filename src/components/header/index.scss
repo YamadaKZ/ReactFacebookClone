@@ -1,0 +1,40 @@
+.header {
+    background-color: #f0f2f5;
+    //background-color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+    height: 90px;
+
+    .logo {
+        img {
+            height: 70px;
+            object-fit: cover;
+        }
+    }
+
+    .title {
+        flex-grow: 1;
+        text-align: center;
+        margin: 0;
+        color: #1877f2;
+        padding-right: 60px;
+    }
+
+    .logout-button {
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+        padding: 5px 10px;
+        background-color: #1877f2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+        background-color: #166fe5;
+        }
+    }
+}

@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
 import "./Login.scss";
 import LoginInput from "./LoginInput";
 
 const Login = () => {
-
 
     return (
         <div className="login-container">
@@ -14,6 +12,10 @@ const Login = () => {
                         Connect with friends and the world
                         <br />
                         around you on Facebook.
+                        <br/>
+                        fake email: "yamada@google.com",
+                        <br/>
+                        fake Password: '12345678',
                     </h2>
                 </div>
                 <div className="LoginInput">
@@ -24,11 +26,11 @@ const Login = () => {
     );
 }
 
+export default Login;
+
+
                     {/* <form className="Password">
                         <input type="email" required></input>
                         <input type="password" required></input>
                         <button type="submit">test submit</button>
                     </form> */}
-                    
-
-export default Login;
